@@ -34,7 +34,7 @@ export default defineConfig({
         // Customize antd stylings here
         modifyVars: {
           // arcoblue-6 is the primary-color :)
-          "arcoblue-6": "#1DA57A",
+          // "arcoblue-6": "#1DA57A",
         },
       },
     },
@@ -48,6 +48,7 @@ export default defineConfig({
         // Dynamic import @arco-design styles
         {
           libraryName: "@arco-design/web-react",
+          libraryNameChangeCase: "pascalCase",
           esModule: true,
           resolveStyle: (name) =>
             `@arco-design/web-react/es/${name}/style/index`,
