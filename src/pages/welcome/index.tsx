@@ -1,13 +1,5 @@
-import {
-  Alert,
-  Card,
-  Link,
-  Typography,
-  Tag,
-  Image,
-} from "@arco-design/web-react";
-import { IconDoubleRight } from "@arco-design/web-react/icon";
 import React from "react";
+import { Card, Typography } from "@arco-design/web-react";
 import { useSelector } from "react-redux";
 import { ReducerState } from "../../redux";
 import styles from "./style/index.module.less";

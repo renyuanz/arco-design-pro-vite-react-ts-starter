@@ -10,7 +10,7 @@ export default (props: FooterProps = {}) => {
   const { className, ...restProps } = props;
   return (
     <Footer className={cs(styles.footer, className)} {...restProps}>
-      ArcoDesign Pro x Vite.js
+      ArcoDesign Pro
     </Footer>
   );
 };
