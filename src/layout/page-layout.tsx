@@ -10,7 +10,6 @@ import Footer from "../components/Footer";
 import LoadingBar from "../components/LoadingBar";
 import { routes, defaultRoute } from "../routes";
 import { isArray } from "../utils/is";
-import useLocale from "../utils/useLocale";
 import { ReducerState } from "../redux";
 import getUrlParams from "../utils/getUrlParams";
 import lazyload from "../utils/lazyload";
@@ -54,13 +53,13 @@ function getFlattenRoutes() {
   return res;
 }
 
-function renderRoutes(locale: string) {
+function renderRoutes() {
   const nodes: React.ReactElement[] = [];
   function travel(_routes: RouteType[], level: number) {
     return _routes.map((route) => {
       const titleDom = (
         <>
-          {route.icon} {locale[route.name] || route.name}
+          {route.icon} {route.name}
         </>
       );
       if (
@@ -107,8 +106,6 @@ function PageLayout() {
   const pathname = history.location.pathname;
   const currentComponent = qs.parseUrl(pathname).url.slice(1);
   const defaultSelectedKeys = [currentComponent || defaultRoute];
-
-  const locale = useLocale();
   const settings = useSelector((state: ReducerState) => state.global.settings);
 
   const [collapsed, setCollapsed] = useState<boolean>(false);
@@ -178,7 +175,7 @@ function PageLayout() {
                 selectedKeys={selectedKeys}
                 autoOpen
               >
-                {renderRoutes(locale)}
+                {renderRoutes()}
               </Menu>
             </div>
             <div className={styles.collapseBtn} onClick={toggleCollapse}>

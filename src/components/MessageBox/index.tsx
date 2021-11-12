@@ -17,13 +17,10 @@ import {
   IconDesktop,
 } from "@arco-design/web-react/icon";
 
-import useLocale from "../../utils/useLocale";
-
 import MessageList, { MessageListType } from "./list";
 import styles from "./style/index.module.less";
 
 function DropContent() {
-  const locale = useLocale();
   const [loading, setLoading] = useState(false);
   const [groupData, setGroupData] = useState<{
     [key: string]: MessageListType;
@@ -68,17 +65,17 @@ function DropContent() {
   const tabList = [
     {
       key: "message",
-      title: locale?.["messageBox.tab.title.message"],
+      title: "Message",
       titleIcon: <IconMessage />,
     },
     {
       key: "notice",
-      title: locale?.["messageBox.tab.title.notice"],
+      title: "Notice",
       titleIcon: <IconCustomerService />,
     },
     {
       key: "approve",
-      title: locale?.["messageBox.tab.title.approve"],
+      title: "Approve",
       titleIcon: <IconFile />,
       avatar: (
         <Avatar style={{ backgroundColor: "#0FC6C2" }}>

@@ -16,52 +16,51 @@ import {
   UPDATE_LOADING,
   UPDATE_PAGINATION,
 } from "./redux/actionTypes";
-import useLocale from "../../utils/useLocale";
 import { ReducerState } from "../../redux";
 import styles from "./style/index.module.less";
 
 function SearchTable() {
-  const locale = useLocale();
-
   const columns = [
     {
-      title: locale?.["searchTable.columns.name"],
+      title: "Policy name / policy ID",
       dataIndex: "name",
     },
     {
-      title: locale?.["searchTable.columns.workflow"],
+      title: "Workflow name / ID",
       dataIndex: "workflow",
-      render: (value) => <Typography.Text copyable>{value}</Typography.Text>,
+      render: (value: string) => (
+        <Typography.Text copyable>{value}</Typography.Text>
+      ),
     },
     {
-      title: locale?.["searchTable.columns.period"],
+      title: "Statistical period",
       dataIndex: "period",
     },
     {
-      title: locale?.["searchTable.columns.statistic"],
+      title: "Statistics",
       dataIndex: "statistic",
     },
     {
-      title: locale?.["searchTable.columns.createdTime"],
+      title: "CreatedTime",
       dataIndex: "createdTime",
     },
     {
-      title: locale?.["searchTable.columns.deadline"],
+      title: "Deadline",
       dataIndex: "deadline",
     },
     {
-      title: locale?.["searchTable.columns.operations"],
+      title: "Operations",
       dataIndex: "operations",
       render: () => (
         <div className={styles.operations}>
           <Button type="text" size="small">
-            {locale?.["searchTable.columns.operations.view"]}
+            View
           </Button>
           <Button type="text" size="small">
-            {locale?.["searchTable.columns.operations.update"]}
+            Update
           </Button>
           <Button type="text" status="danger" size="small">
-            {locale?.["searchTable.columns.operations.delete"]}
+            Delete
           </Button>
         </div>
       ),
@@ -128,13 +127,13 @@ function SearchTable() {
   return (
     <div className={styles.container}>
       <Breadcrumb style={{ marginBottom: 20 }}>
-        <Breadcrumb.Item>{locale?.["menu.list"]}</Breadcrumb.Item>
-        <Breadcrumb.Item>{locale?.["menu.list.searchTable"]}</Breadcrumb.Item>
+        <Breadcrumb.Item>List</Breadcrumb.Item>
+        <Breadcrumb.Item>Search table</Breadcrumb.Item>
       </Breadcrumb>
       <Card bordered={false}>
         <div className={styles.toolbar}>
           <div>
-            <Button type="primary">{locale?.["searchTable.addPolicy"]}</Button>
+            <Button type="primary">Add policy</Button>
           </div>
           <div>
             <DatePicker.RangePicker
@@ -144,7 +143,7 @@ function SearchTable() {
             <Input.Search
               style={{ width: 300 }}
               searchButton
-              placeholder={locale?.["searchTable.placeholder.name"]}
+              placeholder={"Please enter policy name / ID"}
               onSearch={onSearch}
             />
           </div>

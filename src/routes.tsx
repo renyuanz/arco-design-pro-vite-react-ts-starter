@@ -1,25 +1,19 @@
-import React from 'react';
-import { IconList, IconGift } from '@arco-design/web-react/icon';
+import React from "react";
+import { IconList, IconGift } from "@arco-design/web-react/icon";
 
-export const defaultRoute = 'welcome';
+export const defaultRoute = "welcome";
 
 export const routes = [
   {
-    name: 'menu.welcome',
-    key: 'welcome',
+    name: "Home",
+    key: "welcome",
     icon: <IconGift />,
-    componentPath: 'welcome',
+    componentPath: "welcome",
   },
   {
-    name: 'menu.list',
-    key: 'list',
+    name: "App listing",
+    key: "list",
     icon: <IconList />,
-    children: [
-      {
-        name: 'menu.list.searchTable',
-        key: 'list/search-table',
-        componentPath: 'search-table',
-      },
-    ],
+    componentPath: "search-table",
   },
 ];

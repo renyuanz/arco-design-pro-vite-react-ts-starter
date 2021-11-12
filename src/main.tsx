@@ -11,7 +11,6 @@ import history from "./history";
 import rootReducer from "./redux";
 
 import PageLayout from "./layout/page-layout";
-import Setting from "./components/Settings";
 import { GlobalContext } from "./context";
 import Login from "./pages/login";
 import checkLogin from "./utils/checkLogin";
@@ -21,30 +20,6 @@ import "./mock";
 const store = createStore(rootReducer);
 
 function Index() {
-  const localeName = localStorage.getItem("arco-lang") || "zh-CN";
-
-  if (!localStorage.getItem("arco-lang")) {
-    localStorage.setItem("arco-lang", localeName);
-  }
-
-  const [locale, setLocale] = useState();
-
-  async function fetchLocale(ln?: string) {
-    const locale = (await import(`./locale/${ln || localeName}.ts`)).default;
-    setLocale(locale);
-  }
-
-  function getArcoLocale() {
-    switch (localeName) {
-      case "zh-CN":
-        return zhCN;
-      case "en-US":
-        return enUS;
-      default:
-        return zhCN;
-    }
-  }
-
   function fetchUserInfo() {
     axios.get("/api/user/userInfo").then((res) => {
       store.dispatch({
@@ -55,10 +30,6 @@ function Index() {
   }
 
   useEffect(() => {
-    fetchLocale();
-  }, []);
-
-  useEffect(() => {
     if (checkLogin()) {
       fetchUserInfo();
     } else {
@@ -66,25 +37,22 @@ function Index() {
     }
   }, []);
 
-  const contextValue = {
-    locale,
-  };
+  const contextValue = {};
 
-  return locale ? (
+  return (
     <Router history={history}>
-      <ConfigProvider locale={getArcoLocale()}>
+      <ConfigProvider>
         <Provider store={store}>
           <GlobalContext.Provider value={contextValue}>
             <Switch>
               <Route path="/user/login" component={Login} />
               <Route path="/" component={PageLayout} />
             </Switch>
-            <Setting />
           </GlobalContext.Provider>
         </Provider>
       </ConfigProvider>
     </Router>
-  ) : null;
+  );
 }
 
 ReactDOM.render(<Index />, document.getElementById("root"));

@@ -7,8 +7,6 @@ import {
   Space,
 } from "@arco-design/web-react";
 
-import useLocale from "../../utils/useLocale";
-
 export interface MessageItemData {
   id: string;
   title: string;
@@ -33,7 +31,6 @@ interface MessageListProps {
 }
 
 function MessageList(props: MessageListProps) {
-  const locale = useLocale();
   const { data, unReadData, avatar: defaultAvatar } = props;
 
   function onItemClick(item: MessageItemData, index: number) {
@@ -52,7 +49,7 @@ function MessageList(props: MessageListProps) {
         unReadData.length ? (
           <div style={{ textAlign: "center" }}>
             <Button type="text" onClick={onAllBtnClick}>
-              {locale?.["messageBox.allRead"]}
+              All Read
             </Button>
           </div>
         ) : null
