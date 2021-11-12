@@ -12,7 +12,7 @@ export default () => {
     <div className={styles.container}>
       <div className={styles.logo}>
         {/* <Logo /> */}
-        <div className={styles["logo-text"]}>Shopify Hunt</div>
+        <div className={styles["logo-text"]}>ArcoDesign Pro x Vite.js</div>
       </div>
       <div className={styles.content}>
         <div className={styles["content-inner"]}>
